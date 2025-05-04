@@ -1,0 +1,17 @@
+package br.com._dengenharia.dtos;
+
+import java.util.UUID;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+public class ProdutoResponseDto {
+
+	private UUID id;
+	private String nome;
+	private Double preco;
+	private Integer quantidade;
+	private CategoriaProdutoResponseDto categoria;
+}

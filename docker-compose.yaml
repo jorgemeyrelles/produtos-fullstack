@@ -1,0 +1,54 @@
+networks:
+  projeto-produtos:
+    driver: bridge
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: postgres_api_produtos
+    restart: always
+    environment:
+      POSTGRES_DB: apiProdutos
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: root
+    ports:
+      - "5435:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - projeto-produtos
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U admin -d apiProdutos"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  api-produtos:
+    build:
+      context: ./apiProduto
+    container_name: api_produtos
+    restart: always
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/apiProdutos
+      SPRING_DATASOURCE_USERNAME: admin
+      SPRING_DATASOURCE_PASSWORD: root
+    ports:
+      - "8081:8080" # Porta 8081 no host mapeada para 8080 no container
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - projeto-produtos
+
+  web-produtos:
+    build:
+      context: ./webProdutos
+    container_name: web_produtos
+    restart: always
+    ports:
+      - "4200:4200" # Porta 4200 no host mapeada para 4200 no container
+    networks:
+      - projeto-produtos
+
+volumes:
+  postgres_data:

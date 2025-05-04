@@ -1,0 +1,190 @@
+<div class="container mt-5 p-4 bg-light border rounded shadow-sm">
+  <h2 class="text-center text-secondary mb-4">Cadastrar Produto</h2>
+  <form [formGroup]="produtoForm" (ngSubmit)="cadastrarProduto()">
+    <div class="row">
+      <!-- Nome -->
+      <div class="col-md-3 mb-3">
+        <label for="nome" class="form-label text-secondary">Nome</label>
+        <input
+          type="text"
+          class="form-control border-secondary"
+          id="nome"
+          formControlName="nome"
+          placeholder="Digite o nome do produto"
+          required
+        />
+        <div *ngIf="nome?.invalid && nome?.touched" class="error text-danger">
+          <small *ngIf="nome?.errors?.['required']"
+            >O nome é obrigatório.</small
+          >
+          <small *ngIf="nome?.errors?.['minlength']"
+            >O nome deve ter pelo menos 3 caracteres.</small
+          >
+        </div>
+      </div>
+      <!-- Preço -->
+      <div class="col-md-3 mb-3">
+        <label for="preco" class="form-label text-secondary">Preço</label>
+        <input
+          type="number"
+          class="form-control border-secondary"
+          id="preco"
+          formControlName="preco"
+          placeholder="Digite o preço do produto"
+          required
+          min="0"
+          onkeydown="return event.key !== 'ArrowUp' && event.key !== 'ArrowDown'"
+        />
+        <div *ngIf="preco?.invalid && preco?.touched" class="error text-danger">
+          <small *ngIf="preco?.errors?.['required']"
+            >O preço é obrigatório.</small
+          >
+          <small *ngIf="preco?.errors?.['min']"
+            >O preço deve ser maior que 0.</small
+          >
+        </div>
+      </div>
+      <!-- Quantidade -->
+      <div class="col-md-3 mb-3">
+        <label for="quantidade" class="form-label text-secondary"
+          >Quantidade</label
+        >
+        <input
+          type="number"
+          class="form-control border-secondary"
+          id="quantidade"
+          formControlName="quantidade"
+          placeholder="Digite a quantidade"
+          required
+          min="0"
+          onkeydown="return event.key !== 'ArrowUp' && event.key !== 'ArrowDown'"
+        />
+        <div
+          *ngIf="quantidade?.invalid && quantidade?.touched"
+          class="error text-danger"
+        >
+          <small *ngIf="quantidade?.errors?.['required']"
+            >A quantidade é obrigatória.</small
+          >
+          <small *ngIf="quantidade?.errors?.['min']"
+            >A quantidade deve ser maior que 0.</small
+          >
+        </div>
+      </div>
+      <!-- Categoria -->
+      <div class="col-md-3 mb-3">
+        <label for="categoria" class="form-label text-secondary"
+          >Categoria</label
+        >
+        <select
+          class="form-select border-secondary"
+          id="categoriaId"
+          formControlName="categoriaId"
+          required
+        >
+          <option value="" disaabled selected>Selecione uma categoria</option>
+          <option *ngFor="let categoria of categorias" [value]="categoria.id">
+            {{ categoria.nome }}
+          </option>
+        </select>
+        <div
+          *ngIf="categoriaId?.invalid && categoriaId?.touched"
+          class="error text-danger"
+        >
+          <small>Selecione uma categoria.</small>
+        </div>
+      </div>
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary mt-3 w-100"
+      [disabled]="produtoForm.invalid || produtoForm.pristine"
+    >
+      Cadastrar
+    </button>
+  </form>
+</div>
+
+<app-loading *ngIf="isLoading"></app-loading>
+
+<!-- Modal de Sucesso -->
+<div
+  *ngIf="mostrarModalSucesso"
+  class="modal fade show"
+  tabindex="-1"
+  style="display: block; z-index: 1060 !important"
+  aria-labelledby="modalSucessoLabel"
+  aria-hidden="true"
+>
+  <div class="modal-backdrop fade show"></div>
+  <div
+    class="modal-dialog modal-dialog-centered"
+    style="z-index: 1060 !important"
+  >
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="modalSucessoLabel">Sucesso</h5>
+        <button
+          type="button"
+          class="btn-close"
+          (click)="mostrarModalSucesso = false"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>Produto cadastrado com sucesso!</p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button
+          type="button"
+          class="btn btn-success"
+          (click)="mostrarModalSucesso = false"
+        >
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de Erro -->
+<div
+  *ngIf="mostrarModalErro"
+  class="modal fade show"
+  tabindex="-1"
+  style="display: block"
+  aria-labelledby="modalErroLabel"
+  aria-hidden="true"
+>
+  <div class="modal-backdrop fade show"></div>
+  <div
+    class="modal-dialog modal-dialog-centered"
+    style="z-index: 1060 !important"
+  >
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="modalErroLabel">Erro</h5>
+        <button
+          type="button"
+          class="btn-close"
+          (click)="mostrarModalErro = false"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body text-center">
+        <p>
+          Ocorreu um problema ao tentar cadastrar o produto. Tente novamente.
+        </p>
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button
+          type="button"
+          class="btn btn-danger"
+          (click)="mostrarModalErro = false"
+        >
+          Fechar
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

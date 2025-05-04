@@ -1,0 +1,64 @@
+<div class="container mt-4">
+  <h2 class="mb-4 text-center">Dashboard de Produtos</h2>
+  <div class="row justify-content-center">
+    <!-- Linha 1: Gráfico Doughnut e Gráfico Treemap -->
+    <div class="col-12 col-md-6 col-lg-6 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-center">Categorias dos Produtos</h5>
+          <div class="d-flex justify-content-center">
+            <canvas
+              id="doughnutChart"
+              style="width: 50%; max-height: 300px"
+            ></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-12 col-md-6 col-lg-6 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-center">Distribuição de Produtos</h5>
+          <div class="d-flex justify-content-center">
+            <canvas
+              id="treemapChart"
+              style="width: 50%; min-height: 300px; max-height: 430px"
+            ></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Linha 2: Gráfico de Barras (Média de Preços) -->
+    <div class="col-12 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-center">Média de Preços por Categoria</h5>
+          <div class="d-flex justify-content-center">
+            <canvas
+              id="barChartPrecos"
+              style="width: 50%; height: 150px"
+            ></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Linha 3: Gráfico de Barras (Quantidade de Produtos) -->
+    <div class="col-12 mb-4">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title text-center">
+            Quantidade de Produtos por Categoria
+          </h5>
+          <div class="d-flex justify-content-center">
+            <canvas
+              id="barChartQuantidade"
+              style="width: 50%; height: 150px"
+            ></canvas>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

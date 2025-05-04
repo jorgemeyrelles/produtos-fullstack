@@ -1,0 +1,16 @@
+services:
+ postgres:
+   image: postgres:latest
+   container_name: postgres_api_produtos
+   restart: always
+   environment:
+     POSTGRES_DB: apiProdutos
+     POSTGRES_USER: admin
+     POSTGRES_PASSWORD: root
+   ports:
+     - "5435:5432"
+   volumes:
+     - postgres_data:/var/lib/postgresql/data
+volumes:
+ postgres_data:
+

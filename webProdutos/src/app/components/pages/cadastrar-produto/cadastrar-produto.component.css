@@ -1,0 +1,12 @@
+/* Remove as setas dos inputs numéricos */
+input[type="number"] {
+  appearance: none;
+  -moz-appearance: textfield; /* Firefox */
+  -webkit-appearance: none; /* Chrome, Safari, Edge */
+}
+
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0; /* Remove margens extras */
+}
