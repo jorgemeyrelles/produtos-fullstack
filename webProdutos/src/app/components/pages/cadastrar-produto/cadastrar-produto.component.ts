@@ -11,11 +11,10 @@ import { ApiUrlService } from '../../../services/apis/api-urls.service';
 import { LoadingComponent } from '../../shared/loading/loading.component';
 
 @Component({
-  selector: 'app-cadastrar-produto',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, LoadingComponent],
-  templateUrl: './cadastrar-produto.component.html',
-  styleUrl: './cadastrar-produto.component.css',
+    selector: 'app-cadastrar-produto',
+    imports: [CommonModule, ReactiveFormsModule, LoadingComponent],
+    templateUrl: './cadastrar-produto.component.html',
+    styleUrl: './cadastrar-produto.component.css'
 })
 export class CadastrarProdutoComponent implements OnInit {
   categorias: any[] = [];

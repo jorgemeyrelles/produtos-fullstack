@@ -12,7 +12,10 @@
         (change)="filtrarPorCategoria()"
       >
         <option value="">Todas</option>
-        <option *ngFor="let categoria of categorias" [value]="categoria">
+        <option
+          *ngFor="let categoria of categorias$ | async"
+          [value]="categoria"
+        >
           {{ categoria }}
         </option>
       </select>
@@ -31,7 +34,7 @@
       </thead>
       <tbody>
         <!-- Exemploe iteração de produtos -->
-        <tr *ngFor="let produto of produtosPaginados">
+        <tr *ngFor="let produto of produtosPaginados$ | async">
           <td>{{ produto.nome }}</td>
           <td>{{ produto.quantidade }}</td>
           <td>{{ produto.preco | currency : "BRL" }}</td>
@@ -69,7 +72,7 @@
     </table>
   </div>
   <div class="d-flex justify-content-between align-items-center mt-3">
-    <p>Total de produtos: {{ produtos.length }}</p>
+    <p>Total de produtos: {{ (produtos$ | async)?.length }}</p>
     <p>Página {{ paginaAtual }} de {{ totalPaginas }}</p>
     <nav>
       <ul class="pagination">
@@ -97,7 +100,9 @@
   </div>
 </div>
 
-<app-loading *ngIf="isLoading"></app-loading>
+<div *ngIf="isLoading$ | async">
+  <app-loading></app-loading>
+</div>
 
 <!-- Modal de Confirmação -->
 <div

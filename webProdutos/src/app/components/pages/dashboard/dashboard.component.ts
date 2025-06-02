@@ -7,11 +7,10 @@ import 'chartjs-chart-treemap'; // Importação do plugin Treemap
 import { TreemapController, TreemapElement } from 'chartjs-chart-treemap'; // Importação dos componentes necessários
 
 @Component({
-  selector: 'app-dashboard',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css',
+    selector: 'app-dashboard',
+    imports: [CommonModule],
+    templateUrl: './dashboard.component.html',
+    styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent {
   produtos: any[] = [];

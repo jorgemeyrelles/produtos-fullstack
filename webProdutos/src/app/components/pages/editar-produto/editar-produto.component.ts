@@ -13,11 +13,11 @@ import { LoadingComponent } from '../../shared/loading/loading.component';
 import { RouterLink } from '@angular/router';
 
 @Component({
-  selector: 'app-editar-produto',
-  standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, LoadingComponent, RouterLink],
-  templateUrl: './editar-produto.component.html',
-  styleUrl: './editar-produto.component.css',
+    selector: 'app-editar-produto',
+    standalone: true,
+    imports: [CommonModule, ReactiveFormsModule, LoadingComponent, RouterLink],
+    templateUrl: './editar-produto.component.html',
+    styleUrl: './editar-produto.component.css'
 })
 export class EditarProdutoComponent {
   categorias: any[] = [];
